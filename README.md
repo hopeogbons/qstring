@@ -54,4 +54,4 @@ And finally, we need to put you in charge of your copy of `Qstring` and call it 
 
 Enter the url below to access the application. Enjoy!
  
-<pre>http//:ui.qstring.local:8000</pre>
+<pre>http://ui.qstring.local:8000</pre>
