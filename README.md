@@ -18,9 +18,9 @@ Ops or DevOps person familiar with shell scripting,
 github and docker.
 
 - GitHub
-    - git must be installed and available
+    - `git` must be installed and available
 - Docker
-    - Docker Compose installed setup with at least 3GB limit
+    - `docker-compose` installed setup with at least 3GB limit
 - The following port(s) should be available on your machine: 8000
 
 ### Setup
@@ -36,7 +36,7 @@ Then `clone` this repository to your computer and enter the `qstring` root direc
 
 <pre>
 $ git clone git@github.com:hope-ogbons/qstring.git
-cd qstring
+$ cd qstring
 </pre>
 
 Now, all you just need to do, is tell Docker to build the
