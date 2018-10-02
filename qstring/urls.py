@@ -18,15 +18,17 @@ from django.urls import path, re_path, include
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from rest_framework import routers
-from qstring.server import views
+from qstring.server.views import UserViewSet, GroupViewSet, LoginView, LogoutView
 
 router = routers.SimpleRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/v1/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/v1/auth/login', LoginView.as_view()),
+    path('api/v1/auth/logout', LogoutView.as_view()),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
