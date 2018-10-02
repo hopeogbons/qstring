@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import counter from './counter'
+import { reducer as form } from 'redux-form';
+import user from './user'
 
 export default combineReducers({
-  counter
+  form: form,
+  user
 })
