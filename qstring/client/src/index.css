@@ -14,3 +14,19 @@ body {
 button:disabled {
   opacity: 0.5;
 }
+
+.form-signin div div > span {
+  border: none;
+  font-weight: bold;
+  color: #c0292b;
+  vertical-align: middle;
+  text-align: left;
+  display: block;
+  padding: 5px;
+}
+.form-signin div div > span > img {
+  margin-top: -3px;
+  font-size: 0.5em;
+  vertical-align: middle;
+  height: 20px;
+}
