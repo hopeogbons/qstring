@@ -19,8 +19,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-/qstring/__pycache__/*.pyc
-/qstring/server/__pycache__/*.pyc
-*.pyo
-*.pyc
