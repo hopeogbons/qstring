@@ -1,5 +1,5 @@
-FROM python:3
-ENV qstringEnv 1
+FROM python:3.7
+ENV qstring 1
 RUN mkdir /qstring
 WORKDIR /qstring
 ADD requirements.txt /qstring/
