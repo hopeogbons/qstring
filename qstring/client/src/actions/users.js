@@ -80,9 +80,11 @@ export function userTokenAuthSuccess(token) {
 }
 
 export function userTokenAuthFailure(error) {
+  delete axios.defaults.headers.common['Authorization'];
+
   return {
     type: USER_TOKEN_AUTH_FAILURE,
-    payload: error
+    payload: { token: null, error: error }
   };
 }
 
