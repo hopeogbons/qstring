@@ -1,6 +1,8 @@
+// import React from 'react';
 import { connect } from 'react-redux';
 import Login from '../components/Login';
 import {reduxForm} from 'redux-form';
+import { push } from 'connected-react-router'
 import {
   userLoginRequest,
   userLoginFailure,
@@ -25,14 +27,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     submit: (loginCredentials) => {
       dispatch(userLoginRequest(loginCredentials))
-        .then((result) => {
-          let {data, status} = result.payload;
+        .then((res) => {
+          let {token, error} = res.payload;
 
-          if (data.token && status === 200) {
-            dispatch(userLoginSuccess(data));
+          if (token) {
+            dispatch(userLoginSuccess(token));
+            dispatch(push('/'))
           } else {
-            dispatch(userLoginFailure(data));
-            throw data;
+            dispatch(userLoginFailure(error));
           }
         })
         .catch(e => {
