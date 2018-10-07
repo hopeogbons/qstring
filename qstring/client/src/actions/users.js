@@ -1,5 +1,4 @@
 import axios from 'axios';
-import setAuthorizationToken from '../utils/setAuthorizationToken'
 
 // authenticate user
 export const USER_TOKEN_AUTH_REQUEST = 'USER_TOKEN_AUTH_REQUEST';
