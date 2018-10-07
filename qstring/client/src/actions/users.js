@@ -51,7 +51,7 @@ export function userLoginFailure(error) {
 
   return {
     type: USER_LOGIN_FAILURE,
-    payload: error
+    payload: { token: null, error: error }
   };
 }
 
