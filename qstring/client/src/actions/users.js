@@ -37,13 +37,12 @@ export function userLoginRequest(formValues) {
   };
 }
 
-export function userLoginSuccess(user) {
-  localStorage.setItem('qstring', user.token);
-  setAuthorizationToken(localStorage.getItem('qstring'));
+export function userLoginSuccess(token) {
+  localStorage.setItem('qstring', token);
 
   return {
     type: USER_LOGIN_SUCCESS,
-    payload: user
+    payload: { token: token, error: null }
   };
 }
 
