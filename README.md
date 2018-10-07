@@ -5,8 +5,8 @@ Qstring is a query string deserializer that runs on Aether
 ### App Stack
 
 - Docker 3
-- PostgreSQL 9.6
-- Python 3.7 & Django 2.1
+- PostgreSQL 10.5
+- Python 3.7 & Django 2.1.2
 - Django Rest Framework 3.8.2
 - Bootstrap 4.0 (JQuery & Popper)
 - React 16 (Redux & Thunk)
