@@ -15,9 +15,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Template path
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'qstring', 'client', 'build')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'qstring', 'client', 'build',)
 # Static path
-STATIC_DIR = os.path.join(BASE_DIR, 'qstring', 'client', 'build', 'static')
+STATIC_DIR = os.path.join(BASE_DIR, 'qstring', 'client', 'build', 'static',)
 
 
 # Quick-start development settings - unsuitable for production
