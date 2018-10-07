@@ -4,33 +4,29 @@ import {
   USER_TOKEN_RESET_REQUEST
 } from '../actions/users';
 
-const INITIAL_STATE = {user: null, status:null, error:null, loading: false};
+const INITIAL_STATE = {token: null, error:null};
 
 export default function(state = INITIAL_STATE, action) {
-  let error;
-
   switch(action.type) {
     case USER_TOKEN_AUTH_REQUEST:
-      return {...state, user: null, status:'storage', error:null, loading: true};
+      return {...state, token: null, error:null};
     case USER_TOKEN_AUTH_SUCCESS:
-      return {...state, user: action.payload.data.user, status:'authenticated', error:null, loading: false};
+      return {...state, token: action.payload.token, error:null};
     case USER_TOKEN_AUTH_FAILURE:
-      error = action.payload.data || {message: action.payload.message};
-      return {...state, user: null, status:'storage', error:error, loading: false};
+      return {...state, token: null, error: action.payload.error};
 
     case USER_TOKEN_RESET_REQUEST:
-      return {...state, user: null, status:'storage', error:null, loading: false};
+      return {...state, token: null, error:null};
 
     case USER_LOGIN_REQUEST:
-      return {...state, user: null, status:'login', error:null, loading: true};
+      return {...state, token: null, error:null};
     case USER_LOGIN_SUCCESS:
-      return {...state, user: action.payload.user, status:'authenticated', error:null, loading: false};
+      return {...state, token: action.payload.user, error:null };
     case USER_LOGIN_FAILURE:
-      error = action.payload.data || {message: action.payload.message};
-      return {...state, user: null, status:'login', error:error, loading: false};
+      return {...state, token: null,  error: action.payload.error };
 
     case USER_LOGOUT_REQUEST:
-      return {...state, user:null, status:'logout', error:null, loading: false};
+      return {...state, token: null,  error: null };
     
     default:
       return state;
