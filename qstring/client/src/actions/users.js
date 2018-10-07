@@ -72,10 +72,10 @@ export function userTokenAuthRequest(token) {
   };
 }
 
-export function userTokenAuthSuccess(currentUser) {
+export function userTokenAuthSuccess(token) {
   return {
     type: USER_TOKEN_AUTH_SUCCESS,
-    payload: currentUser
+    payload: { token: token, error: null }
   };
 }
 
