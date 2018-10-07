@@ -4,12 +4,13 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from '../reducers';
+import logger from '../middlewares/logger'
 
 export const history = createHistory();
 
 const initialState = {};
 const enhancers = [];
-const middleware = [thunk, promise, routerMiddleware(history)];
+const middleware = [thunk, promise, routerMiddleware(history), logger];
 
 const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
 
