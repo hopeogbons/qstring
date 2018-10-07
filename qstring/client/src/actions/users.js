@@ -55,20 +55,20 @@ export function userLoginFailure(error) {
   };
 }
 
-export function userTokenAuthRequest(tokenFromStorage) {
-  // check if the token is still valid, if so, get me from the server
-
-  const request = axios({
-    method: 'get',
-    url: `${ROOT_URL}/me/from/token?token=${tokenFromStorage}`,
-    headers: {
-      'Authorization': `Bearer ${tokenFromStorage}`
+export function userTokenAuthRequest(token) {
+  const payload = new Promise(function (resolve, reject) {
+    let payload;
+    if (token) {
+        payload = resolve({ token: token, error: null });
+    } else {
+        payload = reject({ token: null, error: 'Token does not exist' });
     }
+    return payload;
   });
 
   return {
     type: USER_TOKEN_AUTH_REQUEST,
-    payload: request
+    payload: payload
   };
 }
 
