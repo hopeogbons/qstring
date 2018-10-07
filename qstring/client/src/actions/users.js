@@ -17,11 +17,23 @@ export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
 const ROOT_URL = 'http://ui.qstring.local:8000/api/v1';
 
 export function userLoginRequest(formValues) {
-  const request = axios.post(`${ROOT_URL}/auth/login`, formValues);
+  const payload = axios.post(`${ROOT_URL}/auth/login`, formValues)
+    .then(res => {
+      const payload = {};
+      const {data, status} = res;
+      if (data.token && status === 200) {
+        payload.token = data.token;
+        payload.error = null;
+      } else {
+        payload.token = null;
+        payload.error = 'Invalid username and password combination';
+      }
+      return payload
+    })
 
   return {
     type: USER_LOGIN_REQUEST,
-    payload: request
+    payload: payload
   };
 }
 
