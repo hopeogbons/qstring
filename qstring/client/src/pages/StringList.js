@@ -8,7 +8,7 @@ export default class Login extends Component {
     return (
       <div>
         <HeaderContainer status="is_logged_in"/>
-        <SurveyContainer/>
+        <StringListContainer/>
         <FooterContainer/>
       </div>
     );
