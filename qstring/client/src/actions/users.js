@@ -89,10 +89,15 @@ export function userTokenAuthFailure(error) {
 }
 
 export function userLogoutReqest() {
-  localStorage.removeItem('qstring');
+  const payload = axios.post(`${ROOT_URL}/auth/logout`)
+    .then(res => {
+      localStorage.removeItem('qstring');
+      return res;
+    })
 
   return {
-    type: USER_LOGOUT_REQUEST
+    type: USER_LOGOUT_REQUEST,
+    payload: payload
   };
 }
 
