@@ -1,9 +1,16 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
-export default class Survey extends Component {
+export default class StringList extends Component {
   render() {
     return (
       <div>
+        <div className="nav-scroller bg-white shadow-sm">
+          <div className="container">
+            <div className="row py-2 px-3">
+              <button className="btn btn-info btn-sm ml-auto" onClick={this.props.gotoStringForm}>+ New String</button>
+            </div>
+          </div>
+        </div>
         <main role="main">
           <div className="container">
             <div className="row" style={{marginTop: '50px'}}>
