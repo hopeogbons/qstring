@@ -4,9 +4,9 @@ import React from "react";
 export default class Footer extends Component {
 	render() {
     return (
-      <footer className="fixed-bottom">
+      <footer className="fixed-bottom bg-white">
         <hr/>
-        <div className="container"><p>&copy; 2018</p></div>
+        <div className="container"><p>&copy; eHealth Africa</p></div>
       </footer>
     );
 	}
