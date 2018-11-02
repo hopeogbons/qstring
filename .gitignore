@@ -1,7 +1,3 @@
-.idea/
 .idea/*
-node_modules/
-qstring/__pycache__/settings.cpython-37.pyc
-qstring/__pycache__/urls.cpython-37.pyc
-qstring/server/__pycache__/serializers.cpython-37.pyc
-qstring/server/__pycache__/views.cpython-37.pyc
+qstring/__pycache__/*
+qstring/server/__pycache__/*
