@@ -7,7 +7,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <HeaderContainer status="logged_out"/>
+        <HeaderContainer status="is_logged_out"/>
         <LoginContainer/>
         <FooterContainer/>
       </div>

@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     submit: (loginCredentials) => {
       dispatch(userLoginRequest(loginCredentials))
         .then((res) => {
-          let {token, error} = res.payload;
+          const {token, error} = res.payload;
 
           if (token) {
             dispatch(userLoginSuccess(token));
