@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from '../reducers';
+// import authenticator from '../middlewares/authenticator'
 
 export const history = createHistory();
 
