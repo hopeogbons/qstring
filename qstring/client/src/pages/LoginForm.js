@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import HeaderContainer from '../containers/HeaderContainer.js';
-import LoginContainer from '../containers/LoginContainer.js';
+import LoginContainer from '../containers/LoginFormContainer.js';
 import FooterContainer from '../containers/FooterContainer.js';
 
-export default class Login extends Component {
+export default class LoginForm extends Component {
   render() {
     return (
       <div>
