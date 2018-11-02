@@ -13,8 +13,9 @@ export default class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/" component={ Dashboard } />
-          <Route path="/login" component={ Login } port={this.props.port} />
+          <Route exact path="/" component={ StringList } />
+          <Route path="/create" component={ StringForm } />
+          <Route path="/login" component={ LoginForm } />
         </Switch>
       </div>
     )
