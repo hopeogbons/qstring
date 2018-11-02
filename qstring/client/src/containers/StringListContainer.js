@@ -1,4 +1,13 @@
 import { connect } from 'react-redux';
-import Survey from '../components/Survey';
+import StringList from '../components/StringList';
+import {push} from "connected-react-router";
 
-export default connect(null, null)(Survey);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gotoStringForm: () => {
+      dispatch(push('/create'));
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(StringList);
