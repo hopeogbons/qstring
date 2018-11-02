@@ -26,8 +26,8 @@ export default class LoginForm extends Component {
   render() {
     const {handleSubmit, submitting} = this.props;
     return (
-      <div className={"text-center"}>
-        <div className={"mx-auto"} style={{marginTop:"150px",width:"300px"}}>
+      <div className="text-center">
+        <div className="mx-auto" style={{marginTop:"150px",width:"300px"}}>
           <div>
             <form className="form-signin"  onSubmit={handleSubmit(this.props.submit.bind(this.props.loginCredentials))}>
               <Field
