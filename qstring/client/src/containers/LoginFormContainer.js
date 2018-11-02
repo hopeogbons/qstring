@@ -43,9 +43,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const reduxLogin = connect(mapStateToProps, mapDispatchToProps)(Login);
+const reduxLoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
 export default reduxForm({
   form: 'login',
   validate
-})(reduxLogin);
+})(reduxLoginForm);
