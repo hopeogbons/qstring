@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Field} from 'redux-form';
 import error_info from '../assests/error_info.svg';
 
-export default class Login extends Component {
+export default class LoginForm extends Component {
   componentWillMount() {
     this.props.reset();
   }
