@@ -14,7 +14,7 @@ export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
 // logout user
 export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
 
-const ROOT_URL = 'http://ui.qstring.local:8000/api/v1';
+const ROOT_URL = 'http://ui.qstring.local:8500/api/v1';
 
 export function userLoginRequest(formValues) {
   const payload = axios.post(`${ROOT_URL}/auth/login`, formValues)
