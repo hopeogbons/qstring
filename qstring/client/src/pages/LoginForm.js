@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import HeaderContainer from '../containers/HeaderContainer.js';
-import LoginContainer from '../containers/LoginFormContainer.js';
-import FooterContainer from '../containers/FooterContainer.js';
+import HeaderContainer from '../containers/HeaderContainer';
+import LoginContainer from '../containers/LoginFormContainer';
+import FooterContainer from '../containers/FooterContainer';
 
 export default class LoginForm extends Component {
   render() {

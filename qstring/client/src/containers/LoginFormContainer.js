@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
-import {reduxForm} from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { push } from 'connected-react-router'
 import {
   userLoginRequest,
