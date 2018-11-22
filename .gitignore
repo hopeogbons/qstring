@@ -1,3 +1,5 @@
 .idea/
 .vscode/
 __pycache__/
+qstring/__pycache__/
+qstring/server/__pycache__/
