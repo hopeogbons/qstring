@@ -15,22 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-from django.conf.urls import url
 from django.views.generic import TemplateView
-from rest_framework import routers
-from rest_framework.authtoken import views
-from qstring.server.views import UserViewSet, GroupViewSet, LoginView, LogoutView
+from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.routers import DefaultRouter
+from qstring.server.views import UserViewSet, GroupViewSet, QstringViewSet, LoginView, LogoutView
 
-router = routers.SimpleRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
+router = DefaultRouter()
+router.register(r'users', UserViewSet, base_name='user')
+router.register(r'groups', GroupViewSet, base_name='group')
+router.register(r'qstrings', QstringViewSet, base_name='qstring')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include(router.urls)),
-    url(r'^api/v1/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/v1/auth/login', LoginView.as_view()),
     path('api/v1/auth/logout', LogoutView.as_view()),
-    path('api/v1/auth/token', views.obtain_auth_token, name='auth_token'),
+    path('api/v1/auth/token', obtain_auth_token, name='auth_token'),
+    path('api/v1/', include(router.urls)),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
