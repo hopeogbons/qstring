@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginForm from '../pages/LoginForm';
-import StringList from '../pages/StringList';
-import StringForm from '../pages/StringForm';
+import QstringList from '../pages/QstringList';
+import QstringForm from '../pages/QstringForm';
 
 export default class App extends Component {
   componentWillMount() {
@@ -13,8 +13,8 @@ export default class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/" component={ StringList } />
-          <Route path="/create" component={ StringForm } />
+          <Route exact path="/" component={ QstringList } />
+          <Route path="/create" component={ QstringForm } />
           <Route path="/login" component={ LoginForm } />
         </Switch>
       </div>
