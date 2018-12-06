@@ -1,34 +1,35 @@
 import axios from 'axios';
 
-// authenticate user
-export const USER_TOKEN_AUTH_REQUEST = 'USER_TOKEN_AUTH_REQUEST';
-export const USER_TOKEN_AUTH_SUCCESS = 'USER_TOKEN_AUTH_SUCCESS';
-export const USER_TOKEN_AUTH_FAILURE = 'USER_TOKEN_AUTH_FAILURE';
-export const USER_TOKEN_RESET_REQUEST = 'USER_TOKEN_RESET_REQUEST';
-
-// login user
+// user login
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
+export const USER_LOGIN_RESET = 'USER_LOGIN_RESET';
 
-// logout user
-export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
+// user authentication
+export const USER_TOKEN_AUTH_REQUEST = 'USER_TOKEN_AUTH_REQUEST';
+export const USER_TOKEN_AUTH_SUCCESS = 'USER_TOKEN_AUTH_SUCCESS';
+export const USER_TOKEN_AUTH_FAILURE = 'USER_TOKEN_AUTH_FAILURE';
+export const USER_TOKEN_AUTH_RESET = 'USER_TOKEN_AUTH_RESET';
 
 const ROOT_URL = 'http://ui.qstring.local:8500/api/v1';
+const TOKEN = localStorage.getItem('qstring');
 
 export function userLoginRequest(formValues) {
-  const payload = axios.post(`${ROOT_URL}/auth/login`, formValues)
+  const payload = axios({
+    url: `${ROOT_URL}/auth/login/`,
+    method: 'post',
+    data: formValues
+  })
     .then(res => {
-      const payload = {};
+      const request = { loading: true };
       const {data, status} = res;
-      if (data.token && status === 200) {
-        payload.token = data.token;
-        payload.error = null;
+      if (data && status === 200) {
+        request.data = data;
       } else {
-        payload.token = null;
-        payload.error = 'Invalid username and password combination';
+        request.error = 'Invalid username and password combination.';
       }
-      return payload
+      return request
     })
 
   return {
@@ -37,33 +38,47 @@ export function userLoginRequest(formValues) {
   };
 }
 
-export function userLoginSuccess(token) {
-  localStorage.setItem('qstring', token);
+export function userLoginSuccess(data) {
+  const payload = { data: data };
+  localStorage.setItem('qstring', payload.data.token);
 
   return {
     type: USER_LOGIN_SUCCESS,
-    payload: { token: token, error: null }
+    payload: payload
   };
 }
 
 export function userLoginFailure(error) {
-  localStorage.removeItem('qstring');
+  const payload = { error: error };
 
   return {
     type: USER_LOGIN_FAILURE,
-    payload: { token: null, error: error }
+    payload: payload
   };
 }
 
-export function userTokenAuthRequest(token) {
+export function userLoginReset() {
+  const payload = axios.post(`${ROOT_URL}/auth/logout/`)
+    .then(res => {
+      delete axios.defaults.headers.common['Authorization'];
+      localStorage.removeItem('qstring');
+      return res;
+    })
+
+  return {
+    type: USER_LOGIN_RESET,
+    payload: payload
+  };
+}
+
+// TODO: Revamp to use authentication endpoint
+export function userTokenAuthRequest() {
   const payload = new Promise(function (resolve, reject) {
-    let payload;
-    if (token) {
-        payload = resolve({ token: token, error: null });
+    if (TOKEN) {
+      return resolve({ data: { token: TOKEN } });
     } else {
-        payload = reject({ token: null, error: 'Token does not exist' });
+      return reject({ error: 'Token does not exist.' });
     }
-    return payload;
   });
 
   return {
@@ -72,40 +87,30 @@ export function userTokenAuthRequest(token) {
   };
 }
 
-export function userTokenAuthSuccess(token) {
+export function userTokenAuthSuccess(data) {
+  const payload = { data: data };
+
   return {
     type: USER_TOKEN_AUTH_SUCCESS,
-    payload: { token: token, error: null }
-  };
-}
-
-export function userTokenAuthFailure(error) {
-  delete axios.defaults.headers.common['Authorization'];
-
-  return {
-    type: USER_TOKEN_AUTH_FAILURE,
-    payload: { token: null, error: error }
-  };
-}
-
-export function userLogoutReqest() {
-  const payload = axios.post(`${ROOT_URL}/auth/logout`)
-    .then(res => {
-      localStorage.removeItem('qstring');
-      return res;
-    })
-
-  return {
-    type: USER_LOGOUT_REQUEST,
     payload: payload
   };
 }
 
-export function userTokenResetRequest() {
+export function userTokenAuthFailure(error) {
+  const payload = { error: error };
+
+  return {
+    type: USER_TOKEN_AUTH_FAILURE,
+    payload: payload
+  };
+}
+
+export function userTokenAuthReset() {
+  delete axios.defaults.headers.common['Authorization'];
   localStorage.removeItem('qstring');
 
   return {
-    type: USER_TOKEN_RESET_REQUEST
+    type: USER_TOKEN_AUTH_RESET
   };
 }
 
