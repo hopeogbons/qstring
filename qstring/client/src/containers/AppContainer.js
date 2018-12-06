@@ -5,34 +5,33 @@ import {
   userTokenAuthRequest,
   userTokenAuthFailure,
   userTokenAuthSuccess,
-  userTokenResetRequest
+  userTokenAuthReset
 } from '../actions/users';
 import App from '../components/App.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadUserFromToken: () => {
-      const token = localStorage.getItem('qstring');
-      dispatch(userTokenAuthRequest(token))
+      dispatch(userTokenAuthRequest())
         .then(res => {
-          const { token, error } = res.payload;
-          if (token) {
-            dispatch(userTokenAuthSuccess(token));
+          const { data, error } = res.payload;
+          if (data) {
+            dispatch(userTokenAuthSuccess(data));
             dispatch(push('/'));
           } else {
             dispatch(userTokenAuthFailure(error));
-            dispatch(userTokenResetRequest());
+            dispatch(userTokenAuthReset());
             dispatch(push('/login'));
           }
         })
         .catch(error => {
           dispatch(userTokenAuthFailure(error));
-          dispatch(userTokenResetRequest());
+          dispatch(userTokenAuthReset());
           dispatch(push('/login'));
         })
   	 },
      resetUser: () =>{
-     	dispatch(userTokenResetRequest());
+     	dispatch(userTokenAuthReset());
      }
   }
 }
