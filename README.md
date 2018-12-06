@@ -44,9 +44,12 @@ Now, all you just need to do, is tell Docker to build the
 
 <pre>$ docker-compose up --build</pre>
 
-Great! It's good practice to run migrations manually, here's how:
+Great! It's good practice to make and run migrations manually, here's how:
 
-<pre>$ docker-compose run web python3 manage.py migrate</pre>
+<pre>
+$ docker-compose run web python3 manage.py makemigrations
+$ docker-compose run web python3 manage.py migrate
+</pre>
 
 And finally, we need to put you in charge of your copy of `Qstring` and call it a day!
 
