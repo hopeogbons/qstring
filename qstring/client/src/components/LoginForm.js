@@ -23,16 +23,27 @@ export default class LoginForm extends Component {
     </div>
   )
 
+  renderSubmitButton = ({
+    input,
+    type,
+    label,
+    disabled
+  }) => (
+    <div>
+      <input { ...input } value={ label } type={ type } disabled={ disabled } className="btn btn-lg btn-dark" />
+    </div>
+  )
+
   render() {
-    const {handleSubmit, submitting} = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <div className="text-center">
-        <div className="mx-auto" style={{marginTop:"150px",width:"300px"}}>
+        <div className="mx-auto" style={{ marginTop:"150px",width:"300px" }}>
           <div>
-            <form className="form-signin"  onSubmit={handleSubmit(this.props.submit.bind(this.props.loginCredentials))}>
+            <form className="form-signin"  onSubmit={ handleSubmit(this.props.submit.bind(this, this.props.loginCredentials)) }>
               <Field
                 name="username"
-                component={this.renderField}
+                component={ this.renderTextBox }
                 type="text"
                 label="Username"
                 placeholder="Username"
@@ -42,16 +53,20 @@ export default class LoginForm extends Component {
               />
               <Field
                 name="password"
-                component={this.renderField}
+                component={ this.renderTextBox }
                 type="password"
                 label="Password"
                 placeholder="Password"
                 htmlFor="password"
                 required
               />
-              <button className="btn btn-lg btn-dark" type="submit" disabled={submitting}>
-                Sign in
-              </button>
+              <Field
+                name="submit"
+                type="submit"
+                label="Submit"
+                disabled={ submitting }
+                component={ this.renderSubmitButton }
+              />
             </form>
           </div>
         </div>
