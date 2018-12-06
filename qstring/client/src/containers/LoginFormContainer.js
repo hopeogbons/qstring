@@ -4,8 +4,9 @@ import { reduxForm } from 'redux-form';
 import { push } from 'connected-react-router'
 import {
   userLoginRequest,
+  userLoginSuccess,
   userLoginFailure,
-  userLoginSuccess
+  userLoginReset
 } from '../actions/users';
 
 // client side validation
@@ -27,17 +28,19 @@ const mapDispatchToProps = (dispatch) => {
     submit: (loginCredentials) => {
       dispatch(userLoginRequest(loginCredentials))
         .then((res) => {
-          const {token, error} = res.payload;
+          const {data, error} = res.payload;
 
-          if (token) {
-            dispatch(userLoginSuccess(token));
+          if (data) {
+            dispatch(userLoginSuccess(data));
             dispatch(push('/'))
           } else {
             dispatch(userLoginFailure(error));
+            dispatch(userLoginReset());
           }
         })
-        .catch(e => {
-          dispatch(userLoginFailure(e));
+        .catch(error => {
+          dispatch(userLoginFailure(error));
+          dispatch(userLoginReset());
         });
     }
   }
