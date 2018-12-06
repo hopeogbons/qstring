@@ -12,7 +12,7 @@ export default class Header extends Component {
               <a className="navbar-brand" href="/">Qstring</a>
               <ul className="nav justify-content-end">
                 <li className="nav-item">
-                  <a className="nav-link active text-white" href="javascript:void(0);" onClick={this.props.logout}>Logout</a>
+                  <span className="nav-link active text-white" style={{ 'cursor': 'pointer' }} onClick={this.props.logout}>Logout</span>
                 </li>
               </ul>
             </div>
