@@ -7,7 +7,7 @@ export default class LoginForm extends Component {
     this.props.reset();
   }
 
-  renderField = ({
+  renderTextBox = ({
     input,
     label,
     type,
@@ -15,10 +15,10 @@ export default class LoginForm extends Component {
     meta: { validate, touched, error }
   }) => (
     <div>
-      <label htmlFor={htmlFor} className="sr-only">{label}</label>
-      <div className={validate ? 'validating my-3' : 'my-3'}>
-        <input {...input} className="form-control" type={type} placeholder={label} />
-        {touched && error && <span><img src={error_info} alt="error"/> {error}</span>}
+      <label htmlFor={ htmlFor } className="sr-only">{ label }</label>
+      <div className={ validate ? 'validating my-3' : 'my-3' }>
+        <input { ...input } className="form-control" type={ type } placeholder={ label } />
+        { touched && error && <span><img src={ error_info } alt="error"/> { error }</span> }
       </div>
     </div>
   )
