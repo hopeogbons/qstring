@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import {userLogoutReqest} from "../actions/users";
-import {push} from "connected-react-router";
+import { userLoginReset } from "../actions/users";
+import { push } from "connected-react-router";
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => {
-      dispatch(userLogoutReqest())
+      dispatch(userLoginReset())
         .then(() => {
           dispatch(push('/login'));
         })
