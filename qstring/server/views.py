@@ -1,13 +1,21 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from rest_framework.views import APIView
-from qstring.server.serializers import UserSerializer, GroupSerializer, LoginSerializer
-from django.contrib.auth import login as django_login, logout as django_logout
+import phonenumbers
+import requests
+from requests.auth import HTTPBasicAuth
+from django.contrib.auth import login as django_login
+from django.contrib.auth import logout as django_logout
+from django.contrib.auth.models import Group, User
+from django.db import transaction
+from qstring.server.models import Qstring, Submission
+from qstring.server.serializers import (GroupSerializer, LoginSerializer,
+                                        QstringSerializer,
+                                        SubmissionSerializer, UserSerializer)
+from rest_framework import status, viewsets
+from rest_framework.authentication import (SessionAuthentication,
+                                           TokenAuthentication)
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.views import APIView
 
 class LoginView(APIView):
     @staticmethod
@@ -17,7 +25,7 @@ class LoginView(APIView):
         user = serializer.validated_data["user"]
         django_login(request, user)
         token, created = Token.objects.get_or_create(user=user)
-        return Response({"token": token.key}, status=200)
+        return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):
@@ -33,8 +41,8 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated, )
+    authentication_classes = (SessionAuthentication, TokenAuthentication, )
+    permission_classes = (IsAdminUser, )
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
