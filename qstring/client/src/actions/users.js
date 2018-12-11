@@ -23,7 +23,7 @@ export function userLoginRequest(formValues) {
   })
     .then(res => {
       const request = { loading: true };
-      const {data, status} = res;
+      const { data, status } = res;
       if (data && status === 200) {
         request.data = data;
       } else {
