@@ -9,7 +9,7 @@
     "connected-react-router": "^4.4.1",
     "dotenv": "^6.0.0",
     "history": "^4.7.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.11",
     "popper.js": "^1.14.4",
     "react": "^16.4.2",
